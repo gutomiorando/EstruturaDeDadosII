@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contasareceberporperiodo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0202df1c-177f-4a35-baab-c86d2c3ccb65">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="104"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicial_fp" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="final_fp" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT c.id, v.codvenda, c.datalancamento, c.datavencimento, c.datapagamento, c.valorprevisto, c.valorrecebido, c.situacao
+FROM contasareceber c, venda v
+WHERE c.codvenda=v.codvenda
+AND c.datapagamento BETWEEN $P{inicial_fp} AND $P{final_fp}
+order by c.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="codvenda" class="java.lang.Integer"/>
+	<field name="datalancamento" class="java.sql.Timestamp"/>
+	<field name="datavencimento" class="java.sql.Timestamp"/>
+	<field name="datapagamento" class="java.sql.Timestamp"/>
+	<field name="valorprevisto" class="java.lang.Double"/>
+	<field name="valorrecebido" class="java.lang.Double"/>
+	<field name="situacao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="486" height="45" uuid="212f6fed-86d5-4742-8931-3330723408b4"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Contas a receber no Período:  ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="486" y="36" width="127" height="25" uuid="9d69bd75-a270-4890-89c8-cbbb9b6fce55"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{inicial_fp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="626" y="41" width="30" height="20" uuid="8a408104-b7e1-4cb5-9c0d-e91bf7cda17b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="668" y="36" width="127" height="25" uuid="74699855-2171-4ef1-aa46-0ee78886bf39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{final_fp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="f9f52916-d4d3-421e-8b2f-83c060449942"/>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="6f71ab18-0cd7-4711-b9b8-900583a94881"/>
+				<text><![CDATA[Cód. Venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="20" uuid="0a353bf0-f1ee-4f31-b50d-75a34b987cfb"/>
+				<text><![CDATA[Data Lançamento	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="20" uuid="c39f0de2-df32-4346-ac96-7df367d5909e"/>
+				<text><![CDATA[Data Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="100" height="20" uuid="9bbd2388-80c4-44c4-8bc4-a4c19ba277ce"/>
+				<text><![CDATA[Data Pagamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="100" height="20" uuid="75dbde16-4fef-40e7-b73a-1571fe39a1d2"/>
+				<text><![CDATA[Valor Previsto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="100" height="20" uuid="b3e4127e-ca64-466b-9c2f-fe02b9c88b39"/>
+				<text><![CDATA[Valor Recebido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="700" y="0" width="100" height="20" uuid="2fe15a60-a951-4b0e-a3b7-03fa178fd8f8"/>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="2e3c7a8c-72f9-4bcd-9cf0-8a704d25ac95"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="28" width="802" height="1" uuid="ccd758a6-21cf-4d21-a02d-9d953cc247eb"/>
+			</line>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="c77b5386-3ba5-4572-a2d7-6622001b3f00"/>
+				<textFieldExpression><![CDATA[$F{codvenda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="33ae4c59-8194-4d0f-83ab-c68c9923018c"/>
+				<textFieldExpression><![CDATA[$F{datalancamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20" uuid="4b656570-025e-4831-8866-2c6488af76db"/>
+				<textFieldExpression><![CDATA[$F{datavencimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20" uuid="3eb54f58-f586-490f-9511-d6f38537619e"/>
+				<textFieldExpression><![CDATA[$F{datapagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="0" width="100" height="20" uuid="35a37836-1937-4491-89f5-96a0764d6027"/>
+				<textFieldExpression><![CDATA[$F{valorprevisto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="100" height="20" uuid="794a2998-5606-40b6-b929-045adc445262"/>
+				<textFieldExpression><![CDATA[$F{valorrecebido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="700" y="0" width="100" height="20" uuid="46701ce4-c406-41af-9bb8-58f03f5eecc3"/>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="742" y="32" width="40" height="20" uuid="380c429b-12b4-4d45-8ab7-9996871b52c3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="20" y="32" width="100" height="20" uuid="f2512542-bc88-4c34-921d-d7391463d817"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="630" y="32" width="80" height="20" uuid="00b11ef0-d978-4c90-9e5f-ec2e2f722649"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="526" y="22" width="155" height="20" uuid="09348977-cc8d-4a61-a8b9-498093eeab2f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Valor Total Recebido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="22" width="140" height="20" uuid="3b58e2c1-7536-43cc-a7ef-7ac33adb1e08"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Valor Total Previsto:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

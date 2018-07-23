@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vendasporcliente" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b1089882-c87f-4cf8-a673-4b35cb0e4f4b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codcli_fp" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT v.codvenda, v.codcli, c.nome, v.quantidade, v.litros, v.valortotal, v.formapagamento, v.dataemissao, v.situacao
+FROM venda v, cliente c
+WHERE v.codcli=c.codcli
+AND v.codcli = $P{codcli_fp}
+order by v.codvenda]]>
+	</queryString>
+	<field name="codvenda" class="java.lang.Integer"/>
+	<field name="codcli" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="quantidade" class="java.lang.Double"/>
+	<field name="litros" class="java.lang.Double"/>
+	<field name="valortotal" class="java.lang.Double"/>
+	<field name="formapagamento" class="java.lang.String"/>
+	<field name="dataemissao" class="java.sql.Timestamp"/>
+	<field name="situacao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="802" height="35" uuid="2e35ab76-7d00-4991-87f3-69c8103d1d34"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Vendas Por Cliente]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="76" height="20" uuid="6069080b-0192-46b2-9b42-8a16078e331b"/>
+				<text><![CDATA[Cód. Venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="0" width="100" height="20" uuid="e5300011-eee5-4651-a643-665f4203fc76"/>
+				<text><![CDATA[Cód. Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="0" width="100" height="20" uuid="f0759d9d-22a1-4e71-96de-5a04f0fc6b68"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="72" height="20" uuid="95832567-219a-4541-9520-82762503efe6"/>
+				<text><![CDATA[Quant. Itens]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="0" width="100" height="20" uuid="1be4bd2b-5a64-4075-a6b6-ac5f6f86ddc7"/>
+				<text><![CDATA[Quant. Litros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="0" width="100" height="20" uuid="6e9c255a-df33-4e17-b99c-775df3ddc18d"/>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="548" y="0" width="100" height="20" uuid="2dc2a363-1f03-4d08-bf08-fe96b370db52"/>
+				<text><![CDATA[Forma Pagamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="0" width="100" height="20" uuid="6e7b0a0e-edcb-42dd-b4fa-613872543da2"/>
+				<text><![CDATA[Emissão]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="750" y="0" width="52" height="20" uuid="79151bf0-7c98-4e1f-a55e-b11b7ac0e0e0"/>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="76" height="20" uuid="c8d7b643-bd67-4175-9974-9b152513195f"/>
+				<textFieldExpression><![CDATA[$F{codvenda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="0" width="100" height="20" uuid="bf24484e-f94d-4623-9d81-2324bc3569e2"/>
+				<textFieldExpression><![CDATA[$F{codcli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="0" width="100" height="20" uuid="a350755a-5408-4a0f-99cb-1a1e80d832c9"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="72" height="20" uuid="fa140e11-99dc-491d-bb08-bc118e0a438d"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="100" height="20" uuid="d9656031-fcd5-44b4-b2ca-3d6347513c23"/>
+				<textFieldExpression><![CDATA[$F{litros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="100" height="20" uuid="c1a33e32-03cd-47c8-8b0a-4a780138ea73"/>
+				<textFieldExpression><![CDATA[$F{valortotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="548" y="0" width="100" height="20" uuid="13b6ee57-3e29-427f-aa00-bcfb56e4a1d9"/>
+				<textFieldExpression><![CDATA[$F{formapagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="0" width="100" height="20" uuid="06310cb6-1d47-4da4-9893-d2b8130d020d"/>
+				<textFieldExpression><![CDATA[$F{dataemissao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="750" y="0" width="52" height="20" uuid="a48f9129-d2df-4bd9-a59b-4b5a2abc6059"/>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" uuid="6ac40b2b-4d98-4322-a319-573739ba48e8"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="628" y="33" width="80" height="20" uuid="a382e619-76ab-4645-a84c-7850b8bb24d7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="750" y="33" width="40" height="20" uuid="9b300a2e-1523-47bc-8475-bebd476dd1da"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="0" y="34" width="100" height="20" uuid="88f09b3f-0ae2-40cc-acec-fea1b191328b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

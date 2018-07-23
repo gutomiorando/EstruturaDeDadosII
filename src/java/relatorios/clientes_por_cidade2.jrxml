@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="clientes_por_cidade2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8445bd95-edcb-4c56-a632-e6ac1b718461">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codcid_fp" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select c.codcli, c.nome nomecliente, d.nome, c.tipocadastro, c.nome, c.cpf_cnpj, c.rua, c.numero, c.datacadastro, c.situacao
+from cliente c, cidade d
+where c.codcid = d.codcid
+AND c.codcid = $P{codcid_fp}
+ORDER BY c.nome]]>
+	</queryString>
+	<field name="codcli" class="java.lang.Integer"/>
+	<field name="nomecliente" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="tipocadastro" class="java.lang.String"/>
+	<field name="cpf_cnpj" class="java.lang.String"/>
+	<field name="rua" class="java.lang.String"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="datacadastro" class="java.sql.Timestamp"/>
+	<field name="situacao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="18" width="802" height="40" uuid="86ab7bc8-6ac5-4dad-afbe-2b1802d9cbfe"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Clientes por Cidade]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="66" height="20" uuid="0ff3cac7-8bca-45fa-b771-be343d3c94df"/>
+				<text><![CDATA[Cód. Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="2" width="100" height="20" uuid="63420bde-91b3-4332-aa27-7aa7240df7b2"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="166" y="2" width="100" height="20" uuid="51496a00-6ba0-47bc-b94d-a181b3e9264f"/>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="2" width="100" height="20" uuid="803c64bb-0ff9-4322-acc2-1d2186a3c6da"/>
+				<text><![CDATA[Cpf/Cnpj]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="2" width="100" height="20" uuid="97fecc76-dac3-451a-8d91-9e6b175a766e"/>
+				<text><![CDATA[Rua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="2" width="72" height="20" uuid="f02883a3-39e8-408d-8817-8a7307668448"/>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="538" y="2" width="72" height="20" uuid="201fb6d5-fc4f-453a-bb08-6245a81b2a26"/>
+				<text><![CDATA[Tipo Cadastro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="610" y="2" width="100" height="20" uuid="4d82a2e7-0611-4c18-95f0-472e8f5adef1"/>
+				<text><![CDATA[Data Cadastro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="2" width="92" height="20" uuid="8ed87978-b509-40ec-b83d-66e2ec1c2e48"/>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="66" height="20" uuid="887d7886-6f35-4a6a-8790-341c001b2d4a"/>
+				<textFieldExpression><![CDATA[$F{codcli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="3" width="100" height="20" uuid="bb77ac03-c7bc-48a9-9efd-31b97ffdf11c"/>
+				<textFieldExpression><![CDATA[$F{nomecliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="3" width="100" height="20" uuid="2b6bffb3-e67e-4704-9ed2-8718b8944250"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="3" width="100" height="20" uuid="e6611ccf-dc49-4c20-80c2-4f0ae993b8cd"/>
+				<textFieldExpression><![CDATA[$F{cpf_cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="3" width="100" height="20" uuid="ffc9f948-9478-47ec-924f-42a38290002d"/>
+				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="3" width="72" height="20" uuid="74be96b4-66ca-433a-8df0-8bc5d2c8a3bd"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="538" y="3" width="72" height="20" uuid="cb9c8ca7-8527-46bc-9abb-3a06efc11851"/>
+				<textFieldExpression><![CDATA[$F{tipocadastro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="610" y="3" width="100" height="20" uuid="3730d638-3d08-4535-862c-fd7cfce03675"/>
+				<textFieldExpression><![CDATA[$F{datacadastro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="710" y="3" width="92" height="20" uuid="2e0477b7-0a49-45bb-b82c-54fdbdf28292"/>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="23" width="802" height="1" uuid="0400c704-43a0-429a-943c-7dbd5970e2e3"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="610" y="34" width="80" height="20" uuid="ea691a64-f9c8-4adc-bdd8-f0ff7c25e78f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="730" y="34" width="40" height="20" uuid="90ddf1ad-5cb1-406c-8f64-d58cabb87cde"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="0" y="34" width="100" height="20" uuid="684b9e16-83b0-4f79-8400-af59833670b3"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
